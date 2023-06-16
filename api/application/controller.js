@@ -11,38 +11,34 @@ class AppController {
   }
 
   async getFiles(req, res) {
-    try {
-      const fileService = new FileRestService();
-      const { data } = await fileService.getFiles();
+    const fileService = new FileRestService();
+    const { data } = await fileService.getFiles();
 
-      let promises = [];
-      _.each(data.files, (file) => {
-        promises = [
-          ...promises,
-          new Promise((resolve) =>
-            fileService
-              .getFile(file)
-              .then((response) => resolve(response))
-              .catch(() => resolve({}))
-          ),
-        ];
+    let promises = [];
+    _.each(data.files, (file) => {
+      promises = [
+        ...promises,
+        new Promise((resolve) =>
+          fileService
+            .getFile(file)
+            .then((response) => resolve(response))
+            .catch(() => resolve({}))
+        ),
+      ];
+    });
+
+    const responses = (await Promise.all(promises))
+      .filter((response) => !_.isEmpty(response) && response.status === 200)
+      .map((response) => {
+        return response.data;
       });
 
-      const responses = (await Promise.all(promises))
-        .filter((response) => !_.isEmpty(response) && response.status === 200)
-        .map((response) => {
-          return response.data;
-        });
+    const fileRepository = new FileRepository();
+    const files = fileRepository
+      .processFiles(responses)
+      .filter((file) => !_.isEmpty(file));
 
-      const fileRepository = new FileRepository();
-      const files = fileRepository
-        .processFiles(responses)
-        .filter((file) => !_.isEmpty(file));
-
-      return res.json(files);
-    } catch (err) {
-      console.log(err);
-    }
+    return res.json(files);
   }
 }
 
