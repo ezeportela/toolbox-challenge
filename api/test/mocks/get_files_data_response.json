@@ -1,0 +1,32 @@
+[
+  {
+    "file": "test2.csv",
+    "lines": [
+      {
+        "text": "jOVwNAfWqtHYRNlT",
+        "number": "16",
+        "hex": "202cc29bb691e6433e3684cf7daa9f4f"
+      }
+    ]
+  },
+  {
+    "file": "test3.csv",
+    "lines": [
+      {
+        "text": "fjkeLK",
+        "number": "2787",
+        "hex": "5a6ca22894b3b4df7e79b412a951b035"
+      },
+      {
+        "text": "JDw",
+        "number": "8",
+        "hex": "9d42847fd6c888005b176be4595add25"
+      },
+      {
+        "text": "tLoPKJRbSPG",
+        "number": "83891",
+        "hex": "99ba6451dcf35a59ac77fb178953d9f0"
+      }
+    ]
+  }
+]

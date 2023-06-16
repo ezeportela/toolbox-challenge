@@ -14,16 +14,16 @@ class AppController {
     try {
       const fileService = new FileRestService();
       const { data } = await fileService.getFiles();
-      console.log(data);
+
       let promises = [];
       _.each(data.files, (file) => {
         promises = [
           ...promises,
-          new Promise((resolve, reject) =>
+          new Promise((resolve) =>
             fileService
               .getFile(file)
               .then((response) => resolve(response))
-              .catch((response) => reject(response))
+              .catch(() => resolve({}))
           ),
         ];
       });

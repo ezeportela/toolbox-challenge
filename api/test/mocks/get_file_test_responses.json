@@ -1,0 +1,27 @@
+[
+  {
+    "filename": "test1",
+    "status": 200,
+    "content": "file,text,number,hex"
+  },
+  {
+    "filename": "test2",
+    "status": 200,
+    "content": "file,text,,hex\ntest2.csv,jWQcj\ntest2.csv,jOVwNAfWqtHYRNlT,16,202cc29bb691e6433e3684cf7daa9f4f"
+  },
+  {
+    "filename": "test3",
+    "status": 200,
+    "content": "file,text,number,hex\ntest3.csv,pgCYM\ntest3.csv,fjkeLK,2787,5a6ca22894b3b4df7e79b412a951b035\ntest3.csv,JDw,8,9d42847fd6c888005b176be4595add25\ntest3.csv,tLoPKJRbSPG,83891,99ba6451dcf35a59ac77fb178953d9f0"
+  },
+  {
+    "filename": "test4",
+    "status": 404,
+    "content": "error"
+  },
+  {
+    "filename": "test5",
+    "status": 500,
+    "content": "error"
+  }
+]

@@ -20,17 +20,16 @@ class FileRepository {
   }
 
   parseFileRow(row) {
-    if (!this.validateFileRow(row)) {
-      return null;
-    }
-
     return row
       .map((item, index) => ({ [this.columns[index]]: item }))
       .reduce((prev, curr) => ({ ...prev, ...curr }), {});
   }
 
   processFile(fileMetadata) {
-    const rows = fileMetadata.split("\n").map((row) => row.split(","));
+    const rows = fileMetadata
+      .replaceAll()
+      .split("\n")
+      .map((row) => row.split(","));
 
     const fileLines = rows
       .map(

@@ -1,13 +1,3 @@
 {
-  "files": [
-    "test1.csv",
-    "test2.csv",
-    "test3.csv",
-    "test18.csv",
-    "test4.csv",
-    "test5.csv",
-    "test6.csv",
-    "test9.csv",
-    "test15.csv"
-  ]
+  "files": ["test1.csv", "test2.csv", "test3.csv", "test4.csv", "test5.csv"]
 }
