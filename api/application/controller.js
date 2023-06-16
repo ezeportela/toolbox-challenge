@@ -1,12 +1,10 @@
-const express = require("express");
+class AppController {
+  healtcheck(req, res) {
+    return res.json({
+      status: true,
+      timestamp: new Date().toISOString(),
+    });
+  }
+}
 
-const router = express.Router();
-
-router.get("/healthcheck", function (req, res) {
-  res.json({
-    status: true,
-    timestamp: new Date().toISOString(),
-  });
-});
-
-module.exports = router;
+module.exports = AppController;

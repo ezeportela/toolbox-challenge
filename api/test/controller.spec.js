@@ -13,7 +13,7 @@ describe("controller", function () {
 
   it("should return status equals to true and the current timestamp", async function () {
     const timestamp = new Date().toISOString();
-    const response = await request(app).get("/healthcheck");
+    const response = await request(app).get("/api/v1/healthcheck");
     expect(response.status).to.equals(200);
 
     expect(response.body).to.deep.equal({

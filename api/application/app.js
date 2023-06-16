@@ -1,11 +1,8 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const router = require("./controller");
-
-dotenv.config();
+const router = require("./router");
 
 const app = express();
 app.use(express.json());
-app.use(router);
+app.use("/api/v1", router);
 
 module.exports = app;
