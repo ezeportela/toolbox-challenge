@@ -1,10 +1,10 @@
-const express = require("express");
-const AppController = require("./controller");
+const express = require('express')
+const AppController = require('./controller')
 
-const router = express.Router();
+const router = express.Router()
 
-const controller = new AppController();
-router.get("/healthcheck", controller.healtcheck);
-router.get("/files/data", controller.getFiles);
+const controller = new AppController()
+router.get('/healthcheck', controller.healtcheck)
+router.get('/files/data', controller.getFiles)
 
-module.exports = router;
+module.exports = router

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "nyc --reporter=lcov --reporter=text-summary mocha --exit --timeout 30000"
+    "test": "standard --fix && nyc --reporter=lcov --reporter=text-summary mocha --exit --timeout 30000"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "nock": "^13.3.1",
     "nyc": "^15.1.0",
     "sinon": "^15.1.2",
+    "standard": "^17.1.0",
     "supertest": "^6.3.3"
   }
 }

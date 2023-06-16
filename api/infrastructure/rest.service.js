@@ -1,7 +1,7 @@
-const axios = require("axios");
-const _ = require("lodash");
+const axios = require('axios')
+const _ = require('lodash')
 
-const GET = "get";
+const GET = 'get'
 
 class RestService {
   /**
@@ -13,40 +13,36 @@ class RestService {
    * @param {object} headers
    * @returns {RestService}
    */
-  constructor({ method = GET, url, path, params = {}, headers }) {
-    let uri = url + path;
+  constructor ({ method = GET, url, path, params = {}, headers }) {
+    let uri = url + path
     _.entries(params).forEach(([key, value]) => {
-      uri = uri.replace(`:${key}`, value);
-    });
+      uri = uri.replace(`:${key}`, value)
+    })
 
-    this.url = uri;
+    this.url = uri
 
-    this.method = method;
-    this.headers = headers;
+    this.method = method
+    this.headers = headers
   }
 
   /**
    *
    * @returns {Promise<any>} AxiosResponse
    */
-  async request() {
-    const { method, url, headers } = this;
+  async request () {
+    const { method, url, headers } = this
 
-    try {
-      const response = await axios({
-        method,
-        url,
-        headers,
-      });
+    const response = await axios({
+      method,
+      url,
+      headers
+    })
 
-      return response;
-    } catch (err) {
-      throw err;
-    }
+    return response
   }
 }
 
 module.exports = {
   RestService,
-  GET,
-};
+  GET
+}

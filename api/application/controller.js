@@ -1,20 +1,20 @@
-const FileRepository = require("../domain/file.repository");
-const FileRestService = require("../infrastructure/files.rest.service");
-const _ = require("lodash");
+const FileRepository = require('../domain/file.repository')
+const FileRestService = require('../infrastructure/files.rest.service')
+const _ = require('lodash')
 
 class AppController {
-  healtcheck(req, res) {
+  healtcheck (req, res) {
     return res.json({
       status: true,
-      timestamp: new Date().toISOString(),
-    });
+      timestamp: new Date().toISOString()
+    })
   }
 
-  async getFiles(req, res) {
-    const fileService = new FileRestService();
-    const { data } = await fileService.getFiles();
+  async getFiles (req, res) {
+    const fileService = new FileRestService()
+    const { data } = await fileService.getFiles()
 
-    let promises = [];
+    let promises = []
     _.each(data.files, (file) => {
       promises = [
         ...promises,
@@ -23,23 +23,23 @@ class AppController {
             .getFile(file)
             .then((response) => resolve(response))
             .catch(() => resolve({}))
-        ),
-      ];
-    });
+        )
+      ]
+    })
 
     const responses = (await Promise.all(promises))
       .filter((response) => !_.isEmpty(response) && response.status === 200)
       .map((response) => {
-        return response.data;
-      });
+        return response.data
+      })
 
-    const fileRepository = new FileRepository();
+    const fileRepository = new FileRepository()
     const files = fileRepository
       .processFiles(responses)
-      .filter((file) => !_.isEmpty(file));
+      .filter((file) => !_.isEmpty(file))
 
-    return res.json(files);
+    return res.json(files)
   }
 }
 
-module.exports = AppController;
+module.exports = AppController
