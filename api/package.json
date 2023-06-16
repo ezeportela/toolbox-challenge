@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --exit"
+    "test": "nyc --reporter=lcov --reporter=text-summary mocha --exit --timeout 30000"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,8 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
+    "nock": "^13.3.1",
+    "nyc": "^15.1.0",
     "sinon": "^15.1.2",
     "supertest": "^6.3.3"
   }
