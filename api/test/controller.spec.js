@@ -5,20 +5,30 @@ const sinon = require("sinon");
 
 const expect = chai.expect;
 
+async function testService(path, expectedStatus, expectedResponse) {
+  const response = await request(app).get(path);
+
+  expect(response.status).to.equals(expectedStatus);
+  expect(response.body).to.deep.equal(expectedResponse);
+}
+
 describe("controller", function () {
   this.beforeAll(() => {
     const now = new Date(Date.now());
     sinon.useFakeTimers(now);
   });
 
-  it("should return status equals to true and the current timestamp", async function () {
+  it("should return status equals to true and the current timestamp", () => {
     const timestamp = new Date().toISOString();
-    const response = await request(app).get("/api/v1/healthcheck");
-    expect(response.status).to.equals(200);
-
-    expect(response.body).to.deep.equal({
+    testService("/healthcheck", 200, {
       status: true,
       timestamp,
+    });
+  });
+
+  it("should return a list of files", () => {
+    testService("/files/data", 200, {
+      status: true,
     });
   });
 });

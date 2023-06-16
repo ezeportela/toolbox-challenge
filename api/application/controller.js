@@ -5,6 +5,12 @@ class AppController {
       timestamp: new Date().toISOString(),
     });
   }
+
+  getFiles() {
+    return res.json({
+      status: true,
+    });
+  }
 }
 
 module.exports = AppController;
