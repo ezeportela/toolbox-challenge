@@ -1,0 +1,14 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+$spacers: (
+  // The rest of numbers you need to use...
+  6: ($spacer * 5),
+  7: ($spacer * 5.5)
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.files-table thead {
+  border-bottom: solid 2px #000
+}
