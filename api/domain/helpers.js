@@ -5,7 +5,7 @@ function checkIsNotEmpty (item) {
 }
 
 function checkInt (value) {
-  return !_.isNaN(+value)
+  return checkIsNotEmpty(value) && !_.isNaN(+value)
 }
 
 function stringParser (value) {

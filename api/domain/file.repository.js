@@ -34,16 +34,14 @@ class FileRepository {
 
   processFiles (files) {
     const unorderedFiles = files
+      .slice(1)
       .map(this.processFile, this)
       .filter((file) => !_.isEmpty(file))
     return _.orderBy(unorderedFiles, _.first(this.columns))
   }
 
   validateFileRow (row) {
-    if (
-      _.isEqual(row, this.columns) ||
-      row.filter(checkIsNotEmpty).length !== this.cols.length
-    ) {
+    if (_.isEqual(row, this.columns) || row.length !== this.cols.length) {
       return false
     }
 
@@ -69,8 +67,6 @@ class FileRepository {
       .filter((row) => this.validateFileRow(row), this)
       .map((row, idx) => this.parseFileRow(idx, row), this)
       .reduce((prev, curr) => _.merge(prev, curr), {})
-
-    if (_.isEmpty(lines)) return {}
 
     return lines
   }
