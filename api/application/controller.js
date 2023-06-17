@@ -34,9 +34,10 @@ class AppController {
       })
 
     const fileRepository = new FileRepository()
-    const files = fileRepository
+    const unorderedFiles = fileRepository
       .processFiles(responses)
       .filter((file) => !_.isEmpty(file))
+    const files = _.orderBy(unorderedFiles, ['file'])
 
     return res.json(files)
   }
