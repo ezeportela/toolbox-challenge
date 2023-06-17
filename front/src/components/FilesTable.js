@@ -1,44 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import Table from "react-bootstrap/Table";
-import { FileRestService } from "../lib/FileRestService";
+import { useFilesTable } from "../hooks/FilesTable";
 
 const App = () => {
-  const [files, setFiles] = useState([]);
-
-  async function getFiles() {
-    const response = await new FileRestService().getFiles();
-    setFiles(response.data);
-  }
-
-  useEffect(() => {
-    getFiles();
-  }, []);
+  const { files } = useFilesTable();
 
   const columns = ["File Name", "Text", "Number", "Hex"];
   return (
     <>
-      <Table responsive className="table-striped table-bordered files-table">
-        <thead>
-          <tr>
-            {columns.map((col) => (
-              <th>{col}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {files.map((file) =>
-            file.lines.map((line) => (
-              <tr key={line.hex}>
-                <td>{file.file}</td>
-                <td>{line.text}</td>
-                <td>{line.number}</td>
-                <td>{line.hex}</td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </Table>
+      {files.length > 0 && (
+        <Table responsive className="table-striped table-bordered files-table">
+          <thead>
+            <tr>
+              {columns.map((col) => (
+                <th key={col}>{col}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {files.map((file) =>
+              file.lines.map((line) => (
+                <tr key={line.hex}>
+                  <td>{file.file}</td>
+                  <td>{line.text}</td>
+                  <td>{line.number}</td>
+                  <td>{line.hex}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </Table>
+      )}
     </>
   );
 };
