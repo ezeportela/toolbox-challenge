@@ -1,5 +1,10 @@
 [
   {
+    "filename": "file",
+    "status": 200,
+    "content": "file,text,number,hex\nfile.csv,jOVwNAfWqtHYRNlT,16,202cc29bb691e6433e3684cf7daa9f4f"
+  },
+  {
     "filename": "test1",
     "status": 200,
     "content": "file,text,number,hex"
@@ -23,10 +28,5 @@
     "filename": "test5",
     "status": 500,
     "content": "error"
-  },
-  {
-    "filename": "file",
-    "status": 200,
-    "content": "file,text,number,hex\nfile.csv,jOVwNAfWqtHYRNlT,16,202cc29bb691e6433e3684cf7daa9f4f"
   }
 ]

@@ -33,15 +33,14 @@ class FileRepository {
   columns = ['file', 'text', 'number', 'hex']
 
   processFiles (files) {
-    const unorderedFiles = files
-      .slice(1)
-      .map(this.processFile, this)
-      .filter((file) => !_.isEmpty(file))
-    return unorderedFiles.slice().sort(this.sortFileList.bind(this))
+    return files.map(this.processFile, this).filter(checkIsNotEmpty)
   }
 
   processFile (fileMetadata) {
-    const rows = fileMetadata.split('\n').map((row) => row.split(','))
+    const rows = fileMetadata
+      .split('\n')
+      .map((row) => row.split(','))
+      .slice(1)
 
     const lines = rows
       .filter((row) => this.validateFileRow(row), this)
@@ -69,25 +68,6 @@ class FileRepository {
         return obj
       })
       .reduce((prev, curr) => _.merge(prev, curr), {})
-  }
-
-  sortFileList (a, b) {
-    const col = _.first(this.columns)
-    const fileA = _.get(a, col)
-    const fileB = _.get(b, col)
-
-    const numA = Number(fileA.match(/\d+/))
-    const numB = Number(fileB.match(/\d+/))
-
-    const strA = fileA.replace(numA, '')
-    const strB = fileB.replace(numB, '')
-    const strComparison = strA.localeCompare(strB)
-
-    if (strComparison === 0) {
-      return numA - numB
-    }
-
-    return strComparison
   }
 }
 
