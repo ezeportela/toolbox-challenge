@@ -2,6 +2,11 @@ version: '3'
 
 services:
   api:
-   build: ./api 
-   ports:
-    - "8080:8080"
+    build: ./api 
+    ports:
+      - "8080:8080"
+  
+  front:
+    build: ./front
+    ports:
+      - "3000:3000"

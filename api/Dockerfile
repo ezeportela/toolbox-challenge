@@ -6,13 +6,13 @@ RUN npm install
 
 COPY . .
 
-CMD [ "npm", "test" ]
+RUN npm test
 
-FROM node:14 AS build
+FROM node:14 AS api
 
 WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm i
+COPY --from=tests /usr/src/app/package*.json ./
+RUN npm install
 
 COPY . .
 EXPOSE 8080

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "standard --fix && nyc --reporter=lcov --reporter=text-summary mocha --exit --timeout 30000"
+    "test": "standard --fix && nyc --reporter=lcov --reporter=text-summary mocha --exit"
   },
   "keywords": [],
   "author": "",
