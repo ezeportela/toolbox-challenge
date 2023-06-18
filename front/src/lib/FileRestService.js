@@ -11,7 +11,11 @@ export class FileRestService {
     return new RestService({ url: this.url, path: "/files/list" }).request();
   }
 
-  getFilesContent() {
-    return new RestService({ url: this.url, path: "/files/data" }).request();
+  getFilesContent(fileName) {
+    return new RestService({
+      url: this.url,
+      path: "/files/data",
+      queryParams: { fileName },
+    }).request();
   }
 }

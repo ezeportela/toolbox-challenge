@@ -13,14 +13,15 @@ export class RestService {
    * @param {object} headers
    * @returns {RestService}
    */
-  constructor({ method = GET, url, path, params = {}, headers }) {
+  constructor({ method = GET, url, path, queryParams = {}, headers }) {
     let uri = url + path;
-    _.entries(params).forEach(([key, value]) => {
-      uri = uri.replace(`:${key}`, value);
-    });
+
+    const query = _.entries(queryParams)
+      .map(([key, value]) => [key, value].join("="))
+      .join("&");
+    if (!_.isEmpty(query)) uri += ["?", query].join("");
 
     this.url = uri;
-
     this.method = method;
     this.headers = headers;
   }

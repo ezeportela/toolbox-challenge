@@ -4,7 +4,7 @@ import { FileRestService } from "../lib/FileRestService";
 import { setFilesList, setFilesContent, toggleLoading } from "../store";
 
 export function useFilesTable() {
-  const { files, filesList } = useSelector((state) => state);
+  const { files, filesList, loading } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const fileRestService = new FileRestService();
@@ -14,11 +14,15 @@ export function useFilesTable() {
     dispatch(setFilesList(response.data));
   }
 
-  async function getFilesContent() {
+  async function getFilesContent(fileName = "") {
     dispatch(toggleLoading());
-    const response = await fileRestService.getFilesContent();
+    const response = await fileRestService.getFilesContent(fileName);
     dispatch(setFilesContent(response.data));
     dispatch(toggleLoading());
+  }
+
+  function onChangeFilesList({ target }) {
+    getFilesContent(target.value);
   }
 
   useEffect(() => {
@@ -28,5 +32,5 @@ export function useFilesTable() {
 
   const columns = ["File Name", "Text", "Number", "Hex"];
 
-  return { files, filesList, columns };
+  return { files, filesList, loading, columns, onChangeFilesList };
 }
