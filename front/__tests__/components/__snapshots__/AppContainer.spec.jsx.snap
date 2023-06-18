@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppContainer (Snapshot) Should render component 1`] = `
+<div
+  className="mt-7 mb-5 container"
+>
+  <div
+    className="mt-5 mb-5 d-flex justify-content-center"
+  >
+    <div
+      className="spinner-border"
+      role="status"
+    >
+      <span
+        className="visually-hidden"
+      >
+        Loading...
+      </span>
+    </div>
+  </div>
+</div>
+`;

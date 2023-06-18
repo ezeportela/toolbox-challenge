@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilesTable (Snapshot) Should render component 1`] = `
+<div
+  className="table-responsive"
+>
+  <table
+    className="table-striped table-bordered files-table table"
+  >
+    <thead>
+      <tr>
+        <th>
+          File Name
+        </th>
+        <th>
+          Text
+        </th>
+        <th>
+          Number
+        </th>
+        <th>
+          Hex
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          file.csv
+        </td>
+        <td>
+          jOVwNAfWqtHYRNlT
+        </td>
+        <td>
+          16
+        </td>
+        <td>
+          202cc29bb691e6433e3684cf7daa9f4f
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

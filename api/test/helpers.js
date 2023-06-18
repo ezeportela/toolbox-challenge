@@ -5,8 +5,13 @@ const fs = require('fs')
 const nock = require('nock')
 const pathjs = require('path')
 
-async function testService (path, expectedStatus, expectedResponse) {
-  const response = await request(app).get(path)
+async function testService (
+  path,
+  expectedStatus,
+  expectedResponse,
+  queryParams = {}
+) {
+  const response = await request(app).get(path).query(queryParams)
 
   expect(response.status).to.equals(expectedStatus)
   expect(response.body).to.deep.equal(expectedResponse)

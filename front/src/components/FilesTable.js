@@ -2,13 +2,20 @@ import React from "react";
 
 import Table from "react-bootstrap/Table";
 import { useFilesTable } from "../hooks/FilesTable";
+import SelectList from "./SelectList";
 
 const App = () => {
-  const { files } = useFilesTable();
+  const { files, filesList, columns } = useFilesTable();
 
-  const columns = ["File Name", "Text", "Number", "Hex"];
   return (
     <>
+      {filesList.length > 0 && (
+        <SelectList
+          className="mb-4"
+          items={filesList.map((value) => ({ name: value, value }))}
+          placeholder="Select a file"
+        />
+      )}
       {files.length > 0 && (
         <Table responsive className="table-striped table-bordered files-table">
           <thead>

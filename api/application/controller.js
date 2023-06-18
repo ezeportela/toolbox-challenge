@@ -16,8 +16,19 @@ class AppController {
     })
   }
 
+  async getFilesList (req, res) {
+    const files = await this.getFiles()
+
+    res.json(files)
+  }
+
   async getFilesContent (req, res) {
-    const filesList = await this.getFilesList()
+    const {
+      query: { fileName }
+    } = req
+    const filesList = (await this.getFiles()).filter(
+      (file) => _.isEmpty(fileName) || file === fileName
+    )
 
     let promises = []
     _.each(filesList, (file) => {
@@ -42,7 +53,7 @@ class AppController {
     return res.json(files)
   }
 
-  async getFilesList () {
+  async getFiles () {
     const { data } = await this.fileService.getFiles()
     return data.files.slice().sort(sortList)
   }

@@ -1,22 +1,32 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FileRestService } from "../lib/FileRestService";
-import { setFiles, toggleLoading } from "../store";
+import { setFilesList, setFilesContent, toggleLoading } from "../store";
 
 export function useFilesTable() {
-  const { files } = useSelector((state) => state);
+  const { files, filesList } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  async function getFiles() {
+  const fileRestService = new FileRestService();
+
+  async function getFilesList() {
+    const response = await fileRestService.getFilesList();
+    dispatch(setFilesList(response.data));
+  }
+
+  async function getFilesContent() {
     dispatch(toggleLoading());
-    const response = await new FileRestService().getFiles();
-    dispatch(setFiles(response.data));
+    const response = await fileRestService.getFilesContent();
+    dispatch(setFilesContent(response.data));
     dispatch(toggleLoading());
   }
 
   useEffect(() => {
-    getFiles();
+    getFilesList();
+    getFilesContent();
   }, []);
 
-  return { files };
+  const columns = ["File Name", "Text", "Number", "Hex"];
+
+  return { files, filesList, columns };
 }
