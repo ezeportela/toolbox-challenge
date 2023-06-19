@@ -26,8 +26,8 @@ La solución se puede iniciar con `docker` a través del comando `docker compose
 
 ### scripts
 
-- `start`
-- `test`
+- `npm start`
+- `npm test`
 
 ## Front
 
@@ -37,7 +37,7 @@ La solución se puede iniciar con `docker` a través del comando `docker compose
 
 ### scripts
 
-- `serve`
-- `build`
-- `test`
-- `test:snapshot`
+- `npm run serve`
+- `npm run build`
+- `npm test`
+- `npm run test:snapshot`

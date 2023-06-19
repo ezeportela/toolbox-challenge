@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectList (Snapshot) Should render component 1`] = `
+<select
+  aria-label="select list"
+  className="form-select"
+  onChange={[Function]}
+>
+  <option
+    value=""
+  >
+    select list
+  </option>
+  <option
+    value="file.csv"
+  >
+    file.csv
+  </option>
+  <option
+    value="test.csv"
+  >
+    test.csv
+  </option>
+</select>
+`;

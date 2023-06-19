@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 
 const AppContainer = ({ children }) => {
-  const { loading } = useSelector((state) => state);
+  const loading = useSelector((state) => state.loading);
 
   return (
     <Container className="mt-7 mb-5">

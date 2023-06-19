@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const SET_FILES_LIST = "SET_FILES_LIST";
-const SET_FILES_CONTENT = "SET_FILES_CONTENT";
-const TOGGLE_LOADING = "TOGGLE_LOADING";
+export const SET_FILES_LIST = "SET_FILES_LIST";
+export const SET_FILES_CONTENT = "SET_FILES_CONTENT";
+export const TOGGLE_LOADING = "TOGGLE_LOADING";
 
 const initialState = {
   loading: false,
@@ -46,7 +46,7 @@ export const setFilesContent = (payload) => {
   };
 };
 
-export const toggleLoading = (payload) => {
+export const toggleLoading = () => {
   return {
     type: TOGGLE_LOADING,
   };

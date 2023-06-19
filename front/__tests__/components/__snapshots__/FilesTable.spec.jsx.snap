@@ -1,44 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FilesTable (Snapshot) Should render component 1`] = `
-<div
-  className="table-responsive"
->
-  <table
-    className="table-striped table-bordered files-table table"
+[
+  <select
+    aria-label="Select a file"
+    className="mb-2 form-select"
   >
-    <thead>
-      <tr>
-        <th>
-          File Name
-        </th>
-        <th>
-          Text
-        </th>
-        <th>
-          Number
-        </th>
-        <th>
-          Hex
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          file.csv
-        </td>
-        <td>
-          jOVwNAfWqtHYRNlT
-        </td>
-        <td>
-          16
-        </td>
-        <td>
-          202cc29bb691e6433e3684cf7daa9f4f
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <option
+      value=""
+    >
+      Select a file
+    </option>
+    <option
+      value="file.csv"
+    >
+      file.csv
+    </option>
+    <option
+      value="test.csv"
+    >
+      test.csv
+    </option>
+  </select>,
+  <div
+    className="table-responsive"
+  >
+    <table
+      className="table-striped table-bordered files-table table"
+    >
+      <thead>
+        <tr>
+          <th>
+            File Name
+          </th>
+          <th>
+            Text
+          </th>
+          <th>
+            Number
+          </th>
+          <th>
+            Hex
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            file.csv
+          </td>
+          <td>
+            jOVwNAfWqtHYRNlT
+          </td>
+          <td>
+            16
+          </td>
+          <td>
+            202cc29bb691e6433e3684cf7daa9f4f
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>,
+]
+`;
+
+exports[`FilesTable (Snapshot) Should render component with loading 1`] = `
+[
+  <select
+    aria-label="Select a file"
+    className="mb-2 form-select"
+  >
+    <option
+      value=""
+    >
+      Select a file
+    </option>
+    <option
+      value="file.csv"
+    >
+      file.csv
+    </option>
+    <option
+      value="test.csv"
+    >
+      test.csv
+    </option>
+  </select>,
+  <div
+    className="fade alert alert-secondary show"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      className="octicon octicon-info"
+      fill="currentColor"
+      focusable="false"
+      height={24}
+      role="img"
+      style={
+        {
+          "display": "inline-block",
+          "overflow": "visible",
+          "userSelect": "none",
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M13 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"
+      />
+      <path
+        d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Z"
+      />
+    </svg>
+    <span
+      style={
+        {
+          "marginLeft": "10px",
+        }
+      }
+    >
+      There is no rows for the selected file
+    </span>
+  </div>,
+]
 `;

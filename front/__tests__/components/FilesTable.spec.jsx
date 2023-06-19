@@ -1,49 +1,26 @@
 import React from "react";
 import FilesTable from "../../src/components/FilesTable";
-import { Provider, useSelector } from "react-redux";
-import configureStore from "redux-mock-store"; // If you use redux-mock-store to create a mock store
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
-import nock from "nock";
+import { filesList, filesListContent } from "../mocks/files.mocks";
+import { useFilesTable } from "../../src/hooks/FilesTable";
 
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: jest.fn().mockImplementation((state) => state),
+jest.mock("../../src/hooks/FilesTable", () => ({
+  useFilesTable: jest.fn(),
 }));
 
 describe("FilesTable (Snapshot)", () => {
-  it("Should render component", () => {
-    nock("http://localhost:8080")
-      .get("/files/data")
-      .reply(200, [
-        {
-          file: "file.csv",
-          lines: [
-            {
-              text: "jOVwNAfWqtHYRNlT",
-              number: 16,
-              hex: "202cc29bb691e6433e3684cf7daa9f4f",
-            },
-          ],
-        },
-      ]);
-
+  function testComponent(loading = false, files = []) {
     const mockStore = configureStore([]);
     const initialState = {
-      loading: false,
-      files: [
-        {
-          file: "file.csv",
-          lines: [
-            {
-              text: "jOVwNAfWqtHYRNlT",
-              number: 16,
-              hex: "202cc29bb691e6433e3684cf7daa9f4f",
-            },
-          ],
-        },
-      ],
+      columns: ["File Name", "Text", "Number", "Hex"],
+      loading,
+      filesList,
+      files,
     };
-    useSelector.mockReturnValue(initialState);
+    // useSelector.mockReturnValue(initialState);
+    useFilesTable.mockReturnValue(initialState);
 
     const store = mockStore(initialState);
 
@@ -55,5 +32,13 @@ describe("FilesTable (Snapshot)", () => {
       )
       .toJSON();
     expect(component).toMatchSnapshot();
+  }
+
+  it("Should render component", () => {
+    testComponent(false, filesListContent);
+  });
+
+  it("Should render component with loading", () => {
+    testComponent(false, []);
   });
 });
